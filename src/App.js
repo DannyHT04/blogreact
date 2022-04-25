@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import BlogPage from "./components/BlogPage";
+import DashboardPage from "./components/DashboardPage";
+import LoginPage from "./components/LoginPage";
+import AccountPage from "./components/AccountPage";
+import CreatePage from "./components/CreatePage";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Navbar bg="light" expand="lg">
+          <Container>
+            {/* <Navbar.Brand href="/"></Navbar.Brand> */}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="Blog">Blog</Nav.Link>
+                <Nav.Link href="Dashboard">Dashboard</Nav.Link>
+                <Nav.Link href="Login">Login</Nav.Link>
+                {/* <Nav.Link href="Register">Register</Nav.Link> */}
+                <Nav.Link href="Account">Account</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        <Routes>
+          <Route path="Blog" element={<BlogPage />}></Route>
+          <Route path="Dashboard" element={<DashboardPage />}></Route>
+          <Route path="Login" element={<LoginPage />}></Route>
+          {/* <Route path="Register" element={<CreatePage />}></Route> */}
+          <Route path="Account" element={<AccountPage />}></Route>
+          <Route path="/" element={<BlogPage />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
